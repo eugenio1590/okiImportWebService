@@ -26,8 +26,8 @@ public class GestionMaestros {
 	@Path("/estados")
 	@Produces({ "application/json; charset=UTF-8" })
 	public Map<String, Object> consultarEstados(
-			@DefaultValue("0") @QueryParam("pagina") int pagina, 
-			@DefaultValue("10") @QueryParam("limite") int limite){
+			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+			@QueryParam("limite") Integer limite){
 		return sMaestros.ConsultarEstado(pagina, limite);
 	}
 	
@@ -36,8 +36,8 @@ public class GestionMaestros {
 	@Produces({ "application/json; charset=UTF-8" })
 	public Map<String, Object> consultarCiudades(
 			@PathParam("idEstado") int idEstado,
-			@DefaultValue("0") @QueryParam("pagina") int pagina, 
-			@DefaultValue("10") @QueryParam("limite") int limite){
+			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+			@QueryParam("limite") Integer limite){
 		return sMaestros.ConsultarCiudad(idEstado, pagina, limite);
 	}
 			
