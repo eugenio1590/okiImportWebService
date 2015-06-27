@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="estado")
 @NamedQuery(name="Estado.findAll", query="SELECT e FROM Estado e")
+@JsonIgnoreProperties({"ciudads"})
 public class Estado implements Serializable {
 	private static final long serialVersionUID = 1L;
 

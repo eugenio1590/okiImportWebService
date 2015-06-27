@@ -9,6 +9,7 @@
 		<param-value>
 			/WEB-INF/spring/mail-context.xml
 			/WEB-INF/spring/root-context.xml
+			/WEB-INF/spring/appServlet/servlet-context.xml
 		</param-value>
 	</context-param>
 	
@@ -18,6 +19,7 @@
 	</listener>
 
 	<!-- Processes application requests -->
+	<!-- 1. Spring-JPA -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -27,10 +29,32 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!-- JERSEY -->
+	<servlet>
+    	<servlet-name>jersey-servlet</servlet-name>
+    	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+    	<init-param>
+      		<param-name>com.sun.jersey.config.property.packages</param-name>
+      		<param-value>com.okiimport.web_service.componentes</param-value>
+    	</init-param>
+    	<init-param>
+      		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      		<param-value>true</param-value>
+    	</init-param>
+    	<load-on-startup>2</load-on-startup>
+  	</servlet>
 		
+	<!-- 1. Spring -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 2. JERSEY -->
+  	<servlet-mapping>
+    	<servlet-name>jersey-servlet</servlet-name>
+    	<url-pattern>/rest/*</url-pattern>
+  	</servlet-mapping>
 
 </web-app>
