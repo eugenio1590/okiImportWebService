@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the proveedor database table.
@@ -15,6 +17,7 @@ import javax.persistence.*;
 @Table(name="proveedor")
 @NamedQuery(name="Proveedor.findAll", query="SELECT p FROM Proveedor p")
 @PrimaryKeyJoinColumn(name="id_proveedor")
+@JsonIgnoreProperties({"tipoMenu"})
 public class Proveedor extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

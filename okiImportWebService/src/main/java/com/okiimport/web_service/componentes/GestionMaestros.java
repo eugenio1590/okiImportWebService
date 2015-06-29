@@ -1,9 +1,12 @@
 package com.okiimport.web_service.componentes;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -11,11 +14,15 @@ import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.okiimport.web_service.modelo.Cliente;
+import com.okiimport.web_service.modelo.MarcaVehiculo;
 import com.okiimport.web_service.servicios.SMaestros;
 
 @Component
 @Path("gestionMaestros")
+@Produces({ "application/json; charset=UTF-8" })
 public class GestionMaestros {
 	
 	@Autowired
@@ -24,7 +31,6 @@ public class GestionMaestros {
 	/**ESTADOS**/
 	@GET
 	@Path("/estados")
-	@Produces({ "application/json; charset=UTF-8" })
 	public Map<String, Object> consultarEstados(
 			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
@@ -33,7 +39,6 @@ public class GestionMaestros {
 	
 	@GET
 	@Path("/estados/{idEstado}/ciudades")
-	@Produces({ "application/json; charset=UTF-8" })
 	public Map<String, Object> consultarCiudades(
 			@PathParam("idEstado") int idEstado,
 			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
@@ -41,5 +46,21 @@ public class GestionMaestros {
 		return sMaestros.ConsultarCiudad(idEstado, pagina, limite);
 	}
 			
-
+	/**MARCAS*/
+	@GET
+	@Path("/marcas/vehiculos")
+	public Map<String, Object> consultarMarcas(
+			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+			@QueryParam("limite") Integer limite){
+		return sMaestros.ConsultarMarcas(pagina, limite);
+	}
+	
+	/**CLIENTES*/
+	@POST
+	@Path("/clientes")
+	public Map<String, Object> registrarCliente(@RequestBody Cliente cliente){
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("cliente", sMaestros.registrarOActualizarCliente(cliente));
+		return parametros;
+	}
 }

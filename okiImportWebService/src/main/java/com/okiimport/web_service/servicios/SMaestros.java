@@ -5,12 +5,14 @@ import java.util.Map;
 
 import com.okiimport.web_service.modelo.Analista;
 import com.okiimport.web_service.modelo.Cliente;
+import com.okiimport.web_service.modelo.MarcaVehiculo;
 import com.okiimport.web_service.modelo.Persona;
 import com.okiimport.web_service.modelo.Proveedor;
 
 public interface SMaestros {
 	//Marcas
-	public Map<String,Object> ConsultarMarca(Integer page,Integer limit);
+	public Map<String,Object> ConsultarMarcas(Integer page,Integer limit);
+	public MarcaVehiculo registrarOActualizarMarcaVehiculo(MarcaVehiculo marca);
 	
 	//Personas
 	public <T extends Persona> T acutalizarPersona(T persona);

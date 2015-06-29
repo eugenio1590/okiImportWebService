@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the cliente database table.
@@ -14,6 +16,7 @@ import javax.persistence.*;
 @Table(name="cliente")
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 @PrimaryKeyJoinColumn(name="id_cliente")
+@JsonIgnoreProperties({"tipoMenu"})
 public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

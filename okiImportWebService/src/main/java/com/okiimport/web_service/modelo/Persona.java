@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the persona database table.
@@ -14,6 +16,7 @@ import javax.persistence.*;
 @NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="person_type")
+@JsonIgnoreProperties({"tipoMenu"})
 public abstract class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 

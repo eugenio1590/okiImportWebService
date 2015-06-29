@@ -61,11 +61,21 @@ public class SMaestrosImpl extends AbstractServiceImpl implements SMaestros {
 	private MotorDAO motorDAO;
 
 	//Marcas
-	public Map<String, Object> ConsultarMarca(Integer page, Integer limit) {
+	public Map<String, Object> ConsultarMarcas(Integer page, Integer limit) {
 		Map<String, Object> Parametros= new HashMap<String, Object>();
+		if(limit==null)
+			limit=-1;
 		Parametros.put("total", marcaVehiculoDAO.listaMarcasVehiculosActivas(0, -1).size());
 		Parametros.put("marcas", marcaVehiculoDAO.listaMarcasVehiculosActivas(page*limit, limit));
 		return Parametros;
+	}
+	
+	public MarcaVehiculo registrarOActualizarMarcaVehiculo(MarcaVehiculo marca){
+		if(marca.getIdMarcaVehiculo()==null)
+			marca = marcaVehiculoDAO.save(marca);
+		else
+			marca = marcaVehiculoDAO.update(marca);
+		return marca;
 	}
 
 	//Estados
