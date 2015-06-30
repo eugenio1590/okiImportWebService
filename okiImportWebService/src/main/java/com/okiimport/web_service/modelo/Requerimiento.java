@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-//import com.okiimport.app.servicios.impl.AbstractServiceImpl;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.okiimport.web_service.lib.JsonDateDeserializer;
+import com.okiimport.web_service.lib.JsonDateSerializer;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,6 +25,7 @@ import java.util.List;
 @Entity
 @Table(name="requerimiento")
 @NamedQuery(name="Requerimiento.findAll", query="SELECT r FROM Requerimiento r")
+@JsonIgnoreProperties({"detalleRequerimientos"})
 public class Requerimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -139,34 +145,42 @@ public class Requerimiento implements Serializable {
 		this.estatus = estatus;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getFechaCierre() {
 		return this.fechaCierre;
 	}
 
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getFechaCreacion() {
 		return this.fechaCreacion;
 	}
 
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Timestamp getFechaSolicitud() {
 		return fechaSolicitud;
 	}
 
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setFechaSolicitud(Timestamp fechaSolicitud) {
 		this.fechaSolicitud = fechaSolicitud;
 	}
 
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public Date getFechaVencimiento() {
 		return this.fechaVencimiento;
 	}
 
+	@JsonDeserialize(using=JsonDateDeserializer.class)
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}

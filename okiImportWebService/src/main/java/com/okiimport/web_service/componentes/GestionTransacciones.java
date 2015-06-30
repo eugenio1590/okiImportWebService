@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.okiimport.web_service.mail.MailService;
+import com.okiimport.web_service.modelo.Cliente;
 import com.okiimport.web_service.modelo.Requerimiento;
 import com.okiimport.web_service.servicios.SMaestros;
 import com.okiimport.web_service.servicios.STransaccion;
@@ -19,6 +21,9 @@ import com.okiimport.web_service.servicios.STransaccion;
 @Path("gestionTransacciones")
 @Produces({ "application/json; charset=UTF-8" })
 public class GestionTransacciones {
+	
+	@Autowired
+	protected MailService mailService;
 	
 	@Autowired
 	private SMaestros sMaestros;
@@ -34,6 +39,15 @@ public class GestionTransacciones {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		requerimiento=sTransaccion.registrarRequerimiento(requerimiento, sMaestros);
 		parametros.put("requerimiento", requerimiento);
+		if(requerimiento!=null){
+			Cliente cliente = requerimiento.getCliente();
+			Map<String, Object> model = new HashMap<String, Object>();
+			model.put("nroSolicitud", requerimiento.getIdRequerimiento());
+			model.put("cliente", cliente.getNombre());
+			model.put("cedula", cliente.getCedula());
+			mailService.send(cliente.getCorreo(), "Registro de Requerimiento",
+					"registrarRequerimiento.html", model);
+		}
 		return parametros;
 	}
 
