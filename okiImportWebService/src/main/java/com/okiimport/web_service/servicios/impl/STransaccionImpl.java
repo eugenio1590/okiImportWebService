@@ -210,9 +210,18 @@ public class STransaccionImpl extends AbstractServiceImpl implements STransaccio
 		parametros.put("total", requerimientoDAO.ConsultarRequerimientosConSolicitudesCotizacion(regFiltro, fieldSort, sortDirection, idProveedor, estatus, 0, -1).size());
 		parametros.put("requerimientos", requerimientoDAO.ConsultarRequerimientosConSolicitudesCotizacion(regFiltro, fieldSort, sortDirection, idProveedor, estatus, pagina*limit, limit));
 		return parametros;
-
 	}
 
+	//DetalleRequerimiento
+	public DetalleRequerimiento registrarDetalleRequerimiento(int idRequerimiento, DetalleRequerimiento detalleRequerimiento){
+		Requerimiento requerimiento = this.requerimientoDAO.findByPrimaryKey(idRequerimiento);
+		if(requerimiento!=null){
+			detalleRequerimiento.setRequerimiento(requerimiento);
+			detalleRequerimiento=this.detalleRequerimientoDAO.save(detalleRequerimiento);
+		}
+		return detalleRequerimiento;
+	}
+	
 	public Map<String, Object> ConsultarDetalleCotizacion(Integer idcotizacion,
 			int pagina, int limit) {
 		// TODO Auto-generated method stub

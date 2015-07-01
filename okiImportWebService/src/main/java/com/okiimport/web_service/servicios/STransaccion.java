@@ -6,6 +6,7 @@ import java.util.Map;
 import com.okiimport.web_service.modelo.Cotizacion;
 import com.okiimport.web_service.modelo.DetalleCotizacion;
 import com.okiimport.web_service.modelo.DetalleCotizacionInternacional;
+import com.okiimport.web_service.modelo.DetalleRequerimiento;
 import com.okiimport.web_service.modelo.Requerimiento;
 
 public interface STransaccion {
@@ -36,6 +37,9 @@ public interface STransaccion {
 
 	public Map <String, Object> ConsultarRequerimientosConSolicitudesCotizacion(Requerimiento regFiltro, String fieldSort, 
 			Boolean sortDirection, Integer idProveedor, int pagina, int limit);
+	
+	//DetalleRequerimiento
+	public DetalleRequerimiento registrarDetalleRequerimiento(int idRequerimiento, DetalleRequerimiento detalleRequerimiento);
 	
 	//Cotizaciones
 	public Map<String, Object> consultarSolicitudCotizaciones(Cotizacion cotizacionF, String fieldSort, Boolean sortDirection,

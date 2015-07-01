@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.okiimport.web_service.mail.MailService;
 import com.okiimport.web_service.modelo.Cliente;
+import com.okiimport.web_service.modelo.DetalleRequerimiento;
 import com.okiimport.web_service.modelo.Requerimiento;
 import com.okiimport.web_service.servicios.SMaestros;
 import com.okiimport.web_service.servicios.STransaccion;
@@ -48,6 +50,17 @@ public class GestionTransacciones {
 			mailService.send(cliente.getCorreo(), "Registro de Requerimiento",
 					"registrarRequerimiento.html", model);
 		}
+		return parametros;
+	}
+	
+	@POST
+	@Path("/requerimientos/{id}/detalleRequerimiento")
+	public Map<String, Object> registrarDetalleRequerimiento(
+			@QueryParam("id") int idRequerimiento,
+			@RequestBody DetalleRequerimiento detalleRequerimiento){
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		detalleRequerimiento=sTransaccion.registrarDetalleRequerimiento(idRequerimiento, detalleRequerimiento);
+		parametros.put("detalleRequerimiento", detalleRequerimiento);
 		return parametros;
 	}
 
