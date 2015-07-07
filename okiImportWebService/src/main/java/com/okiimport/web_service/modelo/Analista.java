@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the analista database table.
@@ -13,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @NamedQuery(name="Analista.findAll", query="SELECT a FROM Analista a")
 @PrimaryKeyJoinColumn(name="id_analista")
+@JsonIgnoreProperties({"requerimientos"})
 public class Analista extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -82,7 +85,7 @@ public class Analista extends Persona implements Serializable {
 	@Override
 	public Integer getTipoMenu() {
 		// TODO Auto-generated method stub
-		if(this.administrador)
+		if(this.administrador!=null && this.administrador)
 			this.tipoMenu=1;
 		else
 			this.tipoMenu=2;

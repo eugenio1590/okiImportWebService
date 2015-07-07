@@ -7,9 +7,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @Entity
 @Table(name="cotizacion")
 @NamedQuery(name="Cotizacion.findAll", query="SELECT c FROM Cotizacion c")
+@JsonIgnoreProperties({"detalleCotizacions"})
 public class Cotizacion implements Serializable{
 	private static final long serialVersionUID = 1L;
 

@@ -1,21 +1,29 @@
 package com.okiimport.web_service.modelo;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
-import com.okiimport.web_service.lib.JsonDateDeserializer;
-import com.okiimport.web_service.lib.JsonDateSerializer;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import com.okiimport.web_service.lib.JsonDateSerializer;
 
 
 /**
@@ -149,8 +157,7 @@ public class Requerimiento implements Serializable {
 	public Date getFechaCierre() {
 		return this.fechaCierre;
 	}
-
-	@JsonDeserialize(using=JsonDateDeserializer.class)
+	
 	public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
 	}
@@ -159,8 +166,7 @@ public class Requerimiento implements Serializable {
 	public Date getFechaCreacion() {
 		return this.fechaCreacion;
 	}
-
-	@JsonDeserialize(using=JsonDateDeserializer.class)
+	
 	public void setFechaCreacion(Timestamp fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
@@ -169,8 +175,7 @@ public class Requerimiento implements Serializable {
 	public Timestamp getFechaSolicitud() {
 		return fechaSolicitud;
 	}
-
-	@JsonDeserialize(using=JsonDateDeserializer.class)
+	
 	public void setFechaSolicitud(Timestamp fechaSolicitud) {
 		this.fechaSolicitud = fechaSolicitud;
 	}
@@ -179,8 +184,7 @@ public class Requerimiento implements Serializable {
 	public Date getFechaVencimiento() {
 		return this.fechaVencimiento;
 	}
-
-	@JsonDeserialize(using=JsonDateDeserializer.class)
+	
 	public void setFechaVencimiento(Date fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}

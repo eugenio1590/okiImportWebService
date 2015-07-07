@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Any;
 import org.hibernate.annotations.AnyMetaDef;
 import org.hibernate.annotations.Generated;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.MetaValue;
 
 //import com.okiimport.app.mvvm.AbstractViewModel;
+
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ import java.util.List;
 @Entity
 @Table(name="usuario")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@JsonIgnoreProperties({"persistentLogins", "historyLogins"})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 

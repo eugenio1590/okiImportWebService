@@ -16,7 +16,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Table(name="cliente")
 @NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
 @PrimaryKeyJoinColumn(name="id_cliente")
-@JsonIgnoreProperties({"tipoMenu"})
+@JsonIgnoreProperties({"tipoMenu", "requerimientos"})
 public class Cliente extends Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

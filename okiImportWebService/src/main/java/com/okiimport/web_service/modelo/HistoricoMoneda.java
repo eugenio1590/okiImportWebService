@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 /**
  * Entity implementation class for Entity: HistoricoMoneda
  *
@@ -17,6 +19,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="historico_moneda")
 @NamedQuery(name="HistoricoMoneda.findAll", query="SELECT h FROM HistoricoMoneda h")
+@JsonIgnoreProperties({"cotizacions"})
 public class HistoricoMoneda implements Serializable {
 	private static final long serialVersionUID = 1L;
 	   

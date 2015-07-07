@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the clasificacion_repuesto database table.
@@ -14,6 +16,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="clasificacion_repuesto")
 @NamedQuery(name="ClasificacionRepuesto.findAll", query="SELECT c FROM ClasificacionRepuesto c")
+@JsonIgnoreProperties({"detalleRequerimientos", "proveedores"})
 public class ClasificacionRepuesto implements Serializable {
 	private static final long serialVersionUID = 1L;
 

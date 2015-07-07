@@ -9,7 +9,7 @@ public interface MailService {
 
 	public void send(String to, String subject, String text, File... attachments);  
 
-	public void send(String to, String subject, String template, Map<String, Object> model);
+	public void send(String to, String subject, String template, Map<String, Object> model) throws Exception;
 
 	public void send(String to, String subject, String template, Map<String, Object> model, 
 			File... attachments);

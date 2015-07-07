@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -14,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name="motor")
 @NamedQuery(name="Motor.findAll", query="SELECT m FROM Motor m")
+@JsonIgnoreProperties("requerimientos")
 public class Motor implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 //import com.okiimport.app.mvvm.AbstractViewModel;
 
 
@@ -15,6 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name="detalle_requerimiento")
 @NamedQuery(name="DetalleRequerimiento.findAll", query="SELECT d FROM DetalleRequerimiento d")
+@JsonIgnoreProperties({"detalleCotizacions"})
 public class DetalleRequerimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 

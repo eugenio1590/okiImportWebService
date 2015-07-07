@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -42,21 +43,26 @@ public class GestionTransacciones {
 		requerimiento=sTransaccion.registrarRequerimiento(requerimiento, sMaestros);
 		parametros.put("requerimiento", requerimiento);
 		if(requerimiento!=null){
-			Cliente cliente = requerimiento.getCliente();
-			Map<String, Object> model = new HashMap<String, Object>();
-			model.put("nroSolicitud", requerimiento.getIdRequerimiento());
-			model.put("cliente", cliente.getNombre());
-			model.put("cedula", cliente.getCedula());
-			mailService.send(cliente.getCorreo(), "Registro de Requerimiento",
-					"registrarRequerimiento.html", model);
+			try {
+				Cliente cliente = requerimiento.getCliente();
+				Map<String, Object> model = new HashMap<String, Object>();
+				model.put("nroSolicitud", requerimiento.getIdRequerimiento());
+				model.put("cliente", cliente.getNombre());
+				model.put("cedula", cliente.getCedula());
+				mailService.send(cliente.getCorreo(), "Registro de Requerimiento",
+						"registrarRequerimiento.html", model);
+			}
+			catch(Exception e){
+				return parametros;
+			}
 		}
 		return parametros;
 	}
 	
 	@POST
-	@Path("/requerimientos/{id}/detalleRequerimiento")
+	@Path("/requerimientos/{idRequerimiento}/detalleRequerimiento")
 	public Map<String, Object> registrarDetalleRequerimiento(
-			@QueryParam("id") int idRequerimiento,
+			@PathParam("idRequerimiento") int idRequerimiento,
 			@RequestBody DetalleRequerimiento detalleRequerimiento){
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		detalleRequerimiento=sTransaccion.registrarDetalleRequerimiento(idRequerimiento, detalleRequerimiento);
