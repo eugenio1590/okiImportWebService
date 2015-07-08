@@ -56,6 +56,14 @@ public class GestionMaestros {
 	}
 	
 	/**CLIENTES*/
+	@GET
+	@Path("/clientes/{cedula}")
+	public Map<String, Object> consultarCliente(@PathParam("cedula") String cedula){
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("cliente", sMaestros.consultarCliente(new Cliente(cedula)));
+		return parametros;
+	}
+	
 	@POST
 	@Path("/clientes")
 	public Map<String, Object> registrarCliente(@RequestBody Cliente cliente){
