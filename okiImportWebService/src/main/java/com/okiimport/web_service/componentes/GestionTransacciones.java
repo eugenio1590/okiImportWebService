@@ -3,6 +3,8 @@ package com.okiimport.web_service.componentes;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -35,6 +37,15 @@ public class GestionTransacciones {
 	private STransaccion sTransaccion;
 	
 	//Requerimientos
+	@GET
+	@Path("/requerimientos/clientes/{cedula}")
+	public Map<String, Object> consultarRequerimientos(
+			@PathParam("cedula") String cedula,
+			@DefaultValue("0") @QueryParam("pagina") Integer pagina,
+			@QueryParam("limite") Integer limite){
+		return sTransaccion.ConsultarRequerimientosCliente(null, null, null, cedula, pagina, limite);
+	}
+	
 	@POST
 	@Path("/requerimientos")
 	public Map<String, Object> registrarRequerimiento(

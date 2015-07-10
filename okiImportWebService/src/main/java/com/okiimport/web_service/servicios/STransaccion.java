@@ -26,7 +26,7 @@ public interface STransaccion {
 			int pagina, int limit);
 
 	public Map <String, Object> ConsultarRequerimientosCliente(Requerimiento regFiltro, String fieldSort, Boolean sortDirection, String cedula,
-			int pagina, int limit);
+			Integer pagina, Integer limit);
 	
 	public Map <String, Object> RequerimientosCotizados(Requerimiento regFiltro, String fieldSort, Boolean sortDirection, Integer idusuario,
 			int pagina, int limit);
