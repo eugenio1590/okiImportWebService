@@ -16,7 +16,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @NamedQuery(name="Persona.findAll", query="SELECT p FROM Persona p")
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="person_type")
-@JsonIgnoreProperties({"tipoMenu"})
+@JsonIgnoreProperties({"tipoMenu", "usuario"})
 public abstract class Persona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
