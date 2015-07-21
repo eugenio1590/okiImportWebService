@@ -103,6 +103,10 @@ public class Requerimiento implements Serializable {
 		detalleRequerimientos = new ArrayList<DetalleRequerimiento>();
 	}
 	
+	public Requerimiento(Integer idRequerimiento){
+		this.idRequerimiento = idRequerimiento;
+	}
+	
 	public Requerimiento(Cliente cliente){
 		this.cliente = cliente;
 	}

@@ -1,6 +1,7 @@
 package com.okiimport.web_service.componentes;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.DefaultValue;
@@ -37,6 +38,19 @@ public class GestionTransacciones {
 	private STransaccion sTransaccion;
 	
 	//Requerimientos
+	@GET
+	@Path("/requerimientos/{idRequerimiento}")
+	public Map<String, Object> consultarRequerimiento(@PathParam("idRequerimiento") Integer idRequerimiento){
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		Map<String, Object> mapRequermientos = sTransaccion.consultarRequerimientosGeneral(new Requerimiento(idRequerimiento), null, null, 0, 1);
+		List<Requerimiento> requerimientos = (List<Requerimiento>) mapRequermientos.get("requerimientos");
+		if(requerimientos!=null && requerimientos.size()>0)
+			parametros.put("requerimiento", requerimientos.get(0));
+		else
+			parametros.put("requerimiento", null);
+		return parametros;
+	}
+	
 	@GET
 	@Path("/requerimientos/clientes/{cedula}")
 	public Map<String, Object> consultarRequerimientos(
