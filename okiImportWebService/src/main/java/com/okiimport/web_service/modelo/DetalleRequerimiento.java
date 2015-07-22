@@ -17,7 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @Entity
 @Table(name="detalle_requerimiento")
 @NamedQuery(name="DetalleRequerimiento.findAll", query="SELECT d FROM DetalleRequerimiento d")
-@JsonIgnoreProperties({"detalleCotizacions"})
+@JsonIgnoreProperties({"detalleCotizacions", "foto"})
 public class DetalleRequerimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
