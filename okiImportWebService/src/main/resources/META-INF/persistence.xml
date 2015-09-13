@@ -2,32 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="okiImport" transaction-type="RESOURCE_LOCAL" >
 	<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>com.okiimport.web_service.modelo.Analista</class>
-		<class>com.okiimport.web_service.modelo.Cliente</class>
-		<class>com.okiimport.web_service.modelo.Persona</class>
-		<class>com.okiimport.web_service.modelo.Usuario</class>
-		<class>com.okiimport.web_service.modelo.HistoryLogin</class>
-		<class>com.okiimport.web_service.modelo.Menu</class>
-		<class>com.okiimport.web_service.modelo.PersistentLogin</class>
-		<class>com.okiimport.web_service.modelo.Requerimiento</class>
-		<class>com.okiimport.web_service.modelo.MarcaVehiculo</class>
-		<class>com.okiimport.web_service.modelo.Proveedor</class>
-		<class>com.okiimport.web_service.modelo.Motor</class>
-		<class>com.okiimport.web_service.modelo.DetalleRequerimiento</class>
-		<class>com.okiimport.web_service.modelo.ClasificacionRepuesto</class>
-		<class>com.okiimport.web_service.modelo.Cotizacion</class>
-		<class>com.okiimport.web_service.modelo.DetalleCotizacion</class>
-		<class>com.okiimport.web_service.modelo.Moneda</class>
-		<class>com.okiimport.web_service.modelo.HistoricoMoneda</class>
-		<class>com.okiimport.web_service.modelo.Estado</class>
-		<class>com.okiimport.web_service.modelo.Ciudad</class>
-		<class>com.okiimport.web_service.modelo.DetalleCotizacionInternacional</class>
 		 <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="validate" />
-            <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" />
+<!--             <property name="hibernate.show_sql" value="true" /> -->
+<!--             <property name="hibernate.hbm2ddl.auto" value="validate" /> -->
+<!--             <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/> -->
+<!--             <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider" /> -->
         </properties>
 		
 	</persistence-unit>

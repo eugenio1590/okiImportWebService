@@ -1,72 +1,61 @@
 package com.okiimport.web_service.componentes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.okiimport.web_service.modelo.Cliente;
-import com.okiimport.web_service.modelo.MarcaVehiculo;
-import com.okiimport.web_service.servicios.SMaestros;
+import com.okiimport.app.model.Cliente;
+import com.okiimport.app.service.maestros.SMaestros;
 
-@Component
-@Path("gestionMaestros")
-@Produces({ "application/json; charset=UTF-8" })
-public class GestionMaestros {
+@Controller
+public class GestionMaestros extends AbstractController{
 	
 	@Autowired
 	private SMaestros sMaestros;
 
 	/**ESTADOS**/
-	@GET
-	@Path("/estados")
-	public Map<String, Object> consultarEstados(
-			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+	@RequestMapping(value = "/rest/gestionMaestros/estados", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> consultarEstados(
+			@QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
-		return sMaestros.ConsultarEstado(pagina, limite);
+		return sMaestros.ConsultarEstado(defaultPage(pagina), defaultLimit(limite));
 	}
 	
-	@GET
-	@Path("/estados/{idEstado}/ciudades")
-	public Map<String, Object> consultarCiudades(
-			@PathParam("idEstado") int idEstado,
-			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+	@RequestMapping(value = "/rest/gestionMaestros/estados/{idEstado}/ciudades", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> consultarCiudades(
+			@PathVariable("idEstado") int idEstado,
+			@QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
-		return sMaestros.ConsultarCiudad(idEstado, pagina, limite);
+		return sMaestros.ConsultarCiudad(idEstado, defaultPage(pagina), defaultLimit(limite));
 	}
 			
 	/**MARCAS*/
-	@GET
-	@Path("/marcas/vehiculos")
-	public Map<String, Object> consultarMarcas(
-			@DefaultValue("0") @QueryParam("pagina") Integer pagina, 
+	@RequestMapping(value = "/rest/gestionMaestros/marcas/vehiculos", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> consultarMarcas(
+			@QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
-		return sMaestros.ConsultarMarcas(pagina, limite);
+		return sMaestros.consultarMarcas(defaultPage(pagina), defaultLimit(limite));
 	}
 	
 	/**CLIENTES*/
-	@GET
-	@Path("/clientes/{cedula}")
-	public Map<String, Object> consultarCliente(@PathParam("cedula") String cedula){
+	@RequestMapping(value = "/rest/gestionMaestros/clientes/{cedula}", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> consultarCliente(@PathVariable("cedula") String cedula){
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("cliente", sMaestros.consultarCliente(new Cliente(cedula)));
 		return parametros;
 	}
 	
-	@POST
-	@Path("/clientes")
-	public Map<String, Object> registrarCliente(@RequestBody Cliente cliente){
+	@RequestMapping(value = "/rest/gestionMaestros/clientes", method = RequestMethod.POST)
+	public @ResponseBody Map<String, Object> registrarCliente(@RequestBody Cliente cliente){
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("cliente", sMaestros.registrarOActualizarCliente(cliente));
 		return parametros;
