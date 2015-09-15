@@ -64,62 +64,9 @@
 	</beans:bean>
 	
 	<!-- Configure bean to convert JSON to POJO and vice versa -->
-	<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-	</beans:bean>	
-	
-	<!-- Data Source -->
-<!-- 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
-<!--         <beans:property name="driverClassName" value="${datasource.driver}" /> -->
-<!--         <beans:property name="url" value="${datasource.url}" /> -->
-<!--         <beans:property name="username" value="${datasource.username}" /> -->
-<!--         <beans:property name="password" value="${datasource.password}" /> -->
-<!--         <beans:property name="maxActive" value="100" /> indica el nÃºmero mÃ¡ximo de conexiones que pueden usarse. -->
-<!--         <beans:property name="maxIdle" value="30"/> indica el nÃºmero mÃ¡ximo de conexiones que puede haber esperando a que llegue un usuario para usarlas.  -->
-<!--         <beans:property name="maxWait" value="10000"/> indica el tiempo en ms que esperarÃ¡ Tomcat a que haya una conexiÃ³n libre en caso de que no hubiera ninguna libre en ese instante. -->
-<!--   	</beans:bean> -->
-	
-	<!-- Entity Manager Factory -->
-<!-- 	<beans:bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
-<!-- 		<beans:property name="dataSource" ref="dataSource" /> -->
-<!-- 		<beans:property name="persistenceUnitName" value="okiImport" /> -->
-<!-- 		<beans:property name="jpaVendorAdapter"> -->
-<!-- 			<beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> -->
-<!-- 				<beans:property name="showSql" value="true" /> -->
-<!-- 			</beans:bean> -->
-<!-- 		</beans:property> -->
-<!-- 		<beans:property name="jpaPropertyMap"> -->
-<!-- 			<beans:map> -->
-<!-- 				<beans:entry key="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/> -->
-<!-- 				<beans:entry key="hibernate.hbm2ddl.auto" value="update" /> -->
-<!-- 				<beans:entry key="hibernate.format_sql" value="true" /> -->
-<!-- 			</beans:map> -->
-<!-- 		</beans:property> -->
-<!-- 	</beans:bean> -->
-	
-	<!-- Support Annotation -->
-<!-- 	<beans:bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />   -->
-<!-- 	<beans:bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
+	<beans:bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
     
     <context:annotation-config />
-    <!-- DAO -->   
-<!--     <beans:bean id="analistaDAO" class="com.okiimport.web_service.dao.maestros.impl.AnalistaDAOImpl"/> -->
-<!--     <beans:bean id="usuarioDAO" class="com.okiimport.app.configuracion.dao.impl.UsuarioDAOImpl"/> -->
-<!--     <beans:bean id="menuDAO" class="com.okiimport.app.configuracion.dao.impl.MenuDAOImpl"/> -->
-<!--     <beans:bean id="historyLoginDAO" class="com.okiimport.app.seguridad.dao.impl.HistoryLoginDAOImpl"/> -->
-<!--     <beans:bean id="marcaVehiculoDAO" class="com.okiimport.web_service.dao.maestros.impl.MarcaVehiculoDAOImpl"/> -->
-<!--     <beans:bean id="clienteDAO" class="com.okiimport.web_service.dao.maestros.impl.ClienteDAOImpl"/> -->
-<!--     <beans:bean id="requerimientoDAO" class="com.okiimport.web_service.dao.transaccion.impl.RequerimientoDAOImpl"/>    -->
-<!--     <beans:bean id="motorDAO" class="com.okiimport.web_service.dao.maestros.impl.MotorDAOImpl"/> -->
-<!--     <beans:bean id="proveedorDAO" class="com.okiimport.web_service.dao.maestros.impl.ProveedorDAOImpl"/> -->
-<!--     <beans:bean id="detalleRequerimientoDAO" class="com.okiimport.web_service.dao.transaccion.impl.DetalleRequerimientoDAOImpl"/> -->
-<!--     <beans:bean id="clasificacionRepuestoDAO" class="com.okiimport.web_service.dao.maestros.impl.ClasificacionRepuestoDAOImpl"/> -->
-<!--     <beans:bean id="cotizacionDAO" class="com.okiimport.web_service.dao.transaccion.impl.CotizacionDAOImpl"/> -->
-<!--     <beans:bean id="detalleCotizacionDAO" class="com.okiimport.web_service.dao.transaccion.impl.DetalleCotizacionDAOImpl"/> -->
-<!--     <beans:bean id="monedaDAO" class="com.okiimport.web_service.dao.configuracion.impl.MonedaDAOImpl"/> -->
-<!--     <beans:bean id="historicoMonedaDAO" class="com.okiimport.web_service.configuracion.impl.HistoricoMonedaDAOImpl"/> -->
-<!--     <beans:bean id="estadoDAO" class="com.okiimport.web_service.dao.maestros.impl.EstadoDAOImpl"/> -->
-<!--     <beans:bean id="ciudadDAO" class="com.okiimport.web_service.dao.maestros.impl.CiudadDAOImpl"/> -->
-<!--     <beans:bean id="detalleCotizacionInternacionalDAO" class="com.okiimport.web_service.dao.transaccion.impl.DetalleCotizacionInternacionalDAOImpl"/> -->
     
     <!-- Servicios -->
 <!--     <beans:bean id="sControlUsuario" class="com.okiimport.app.configuracion.servicios.impl.SControlUsuarioImpl"/> -->
@@ -127,12 +74,6 @@
     <beans:bean id="sMaestros" class="com.okiimport.app.service.maestros.impl.SMaestrosImpl"/>
     <beans:bean id="sTransaccion" class="com.okiimport.app.service.transaccion.impl.STransaccionImpl"/>
 <!--     <beans:bean id="sControlConfiguracion" class="com.okiimport.app.configuracion.servicios.impl.SControlConfiguacionImpl"/> -->
-    
-    <!-- Transaction Manager -->
-<!--     <tx:annotation-driven /> -->
-<!-- 	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
-<!-- 		<beans:property name="entityManagerFactory" ref="entityManagerFactory"/> -->
-<!-- 		<beans:property name="defaultTimeout" value="4000"/> -->
-<!-- 	</beans:bean> -->
+    <beans:bean id="mailCliente" class="com.okiimport.app.service.mail.impl.MailClienteImpl"/>
     
 </beans:beans>

@@ -16,18 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.okiimport.app.model.Cliente;
 import com.okiimport.app.model.DetalleRequerimiento;
 import com.okiimport.app.model.Requerimiento;
 import com.okiimport.app.service.maestros.SMaestros;
-import com.okiimport.app.service.mail.MailService;
+import com.okiimport.app.service.mail.MailCliente;
 import com.okiimport.app.service.transaccion.STransaccion;
 
 @Controller
 public class GestionTransacciones extends AbstractController{
 	
 	@Autowired
-	protected MailService mailService;
+	protected MailCliente mailCliente;
 	
 	@Autowired
 	private SMaestros sMaestros;
@@ -77,13 +76,7 @@ public class GestionTransacciones extends AbstractController{
 		parametros.put("requerimiento", requerimiento);
 		if(requerimiento!=null){
 			try {
-				Cliente cliente = requerimiento.getCliente();
-				Map<String, Object> model = new HashMap<String, Object>();
-				model.put("nroSolicitud", requerimiento.getIdRequerimiento());
-				model.put("cliente", cliente.getNombre());
-				model.put("cedula", cliente.getCedula());
-//				mailService.send(cliente.getCorreo(), "Registro de Requerimiento",
-//						"registrarRequerimiento.html", model);
+				mailCliente.registrarRequerimiento(requerimiento, mailService);
 			}
 			catch(Exception e){
 				return parametros;
