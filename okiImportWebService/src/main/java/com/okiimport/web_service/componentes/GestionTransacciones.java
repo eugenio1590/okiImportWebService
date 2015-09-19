@@ -54,7 +54,11 @@ public class GestionTransacciones extends AbstractController{
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		Requerimiento requerimiento = consultarRequrimiento(idRequerimiento);
 		if(requerimiento!=null)
-			parametros.put("detallesRequerimientos", requerimiento.getDetalleRequerimientos());
+			parametros.put(
+					"detallesRequerimientos", 
+					sTransaccion.consultarDetallesRequerimiento(requerimiento.getIdRequerimiento(), 0, -1)
+						.get("detallesRequerimiento")
+			);
 		else
 			parametros.put("detallesRequerimientos", new ArrayList<DetalleRequerimiento>());
 		return parametros;
