@@ -17,20 +17,21 @@ import com.okiimport.app.model.Cliente;
 import com.okiimport.app.service.maestros.SMaestros;
 
 @Controller
+@RequestMapping("/rest/gestionMaestros")
 public class GestionMaestros extends AbstractController{
 	
 	@Autowired
 	private SMaestros sMaestros;
 
 	/**ESTADOS**/
-	@RequestMapping(value = "/rest/gestionMaestros/estados", method = RequestMethod.GET)
+	@RequestMapping(value = "/estados", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarEstados(
 			@QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
 		return sMaestros.ConsultarEstado(defaultPage(pagina), defaultLimit(limite));
 	}
 	
-	@RequestMapping(value = "/rest/gestionMaestros/estados/{idEstado}/ciudades", method = RequestMethod.GET)
+	@RequestMapping(value = "/estados/{idEstado}/ciudades", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarCiudades(
 			@PathVariable("idEstado") int idEstado,
 			@QueryParam("pagina") Integer pagina, 
@@ -39,7 +40,7 @@ public class GestionMaestros extends AbstractController{
 	}
 			
 	/**MARCAS*/
-	@RequestMapping(value = "/rest/gestionMaestros/marcas/vehiculos", method = RequestMethod.GET)
+	@RequestMapping(value = "/marcas/vehiculos", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarMarcas(
 			@QueryParam("pagina") Integer pagina, 
 			@QueryParam("limite") Integer limite){
@@ -47,14 +48,14 @@ public class GestionMaestros extends AbstractController{
 	}
 	
 	/**CLIENTES*/
-	@RequestMapping(value = "/rest/gestionMaestros/clientes/{cedula}", method = RequestMethod.GET)
+	@RequestMapping(value = "/clientes/{cedula}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarCliente(@PathVariable("cedula") String cedula){
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("cliente", sMaestros.consultarCliente(new Cliente(cedula)));
 		return parametros;
 	}
 	
-	@RequestMapping(value = "/rest/gestionMaestros/clientes", method = RequestMethod.POST)
+	@RequestMapping(value = "/clientes", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> registrarCliente(@RequestBody Cliente cliente){
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("cliente", sMaestros.registrarOActualizarCliente(cliente));

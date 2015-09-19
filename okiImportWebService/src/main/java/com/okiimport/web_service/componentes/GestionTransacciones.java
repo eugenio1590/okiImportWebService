@@ -23,6 +23,7 @@ import com.okiimport.app.service.mail.MailCliente;
 import com.okiimport.app.service.transaccion.STransaccion;
 
 @Controller
+@RequestMapping("/rest/gestionTransacciones")
 public class GestionTransacciones extends AbstractController{
 	
 	@Autowired
@@ -35,7 +36,7 @@ public class GestionTransacciones extends AbstractController{
 	private STransaccion sTransaccion;
 	
 	//Requerimientos
-	@RequestMapping(value = "/rest/gestionTransacciones/requerimientos/{idRequerimiento}", method = RequestMethod.GET)
+	@RequestMapping(value = "/requerimientos/{idRequerimiento}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarRequerimiento(
 			@PathVariable("idRequerimiento") Integer idRequerimiento){
 		Map<String, Object> parametros = new HashMap<String, Object>();
@@ -47,7 +48,7 @@ public class GestionTransacciones extends AbstractController{
 		return parametros;
 	}
 	
-	@RequestMapping(value = "/rest/gestionTransacciones/requerimientos/{idRequerimiento}/detallesRequerimientos", method = RequestMethod.GET)
+	@RequestMapping(value = "/requerimientos/{idRequerimiento}/detallesRequerimientos", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarDetallesRequerimientos(
 			@PathVariable("idRequerimiento") Integer idRequerimiento){
 		Map<String, Object> parametros = new HashMap<String, Object>();
@@ -59,7 +60,7 @@ public class GestionTransacciones extends AbstractController{
 		return parametros;
 	}
 	
-	@RequestMapping(value = "/rest/gestionTransacciones/requerimientos/clientes/{cedula}", method = RequestMethod.GET)
+	@RequestMapping(value = "/requerimientos/clientes/{cedula}", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> consultarRequerimientos(
 			@PathVariable("cedula") String cedula,
 			@DefaultValue("0") @QueryParam("pagina") Integer pagina,
@@ -68,7 +69,7 @@ public class GestionTransacciones extends AbstractController{
 				defaultPage(pagina), defaultLimit(limite));
 	}
 	
-	@RequestMapping(value = "/rest/gestionTransacciones/requerimientos", method = RequestMethod.POST)
+	@RequestMapping(value = "/requerimientos", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> registrarRequerimiento(
 			@RequestBody Requerimiento requerimiento){
 		Map<String, Object> parametros = new HashMap<String, Object>();
@@ -85,7 +86,7 @@ public class GestionTransacciones extends AbstractController{
 		return parametros;
 	}
 	
-	@RequestMapping(value = "/rest/gestionTransacciones/requerimientos/{idRequerimiento}/detalleRequerimiento", method = RequestMethod.POST)
+	@RequestMapping(value = "/requerimientos/{idRequerimiento}/detalleRequerimiento", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> registrarDetalleRequerimiento(
 			@PathVariable("idRequerimiento") int idRequerimiento,
 			@RequestBody DetalleRequerimiento detalleRequerimiento){
