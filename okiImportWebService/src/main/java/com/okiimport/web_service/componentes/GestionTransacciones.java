@@ -69,7 +69,7 @@ public class GestionTransacciones extends AbstractController{
 			@PathVariable("cedula") String cedula,
 			@DefaultValue("0") @QueryParam("pagina") Integer pagina,
 			@QueryParam("limite") Integer limite){
-		return sTransaccion.ConsultarRequerimientosCliente(null, null, null, cedula, 
+		return sTransaccion.consultarRequerimientosCliente(null, null, null, cedula, 
 				defaultPage(pagina), defaultLimit(limite));
 	}
 	
