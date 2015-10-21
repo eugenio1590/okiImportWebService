@@ -77,7 +77,7 @@ public class GestionTransacciones extends AbstractController{
 	public @ResponseBody Map<String, Object> registrarRequerimiento(
 			@RequestBody Requerimiento requerimiento){
 		Map<String, Object> parametros = new HashMap<String, Object>();
-		requerimiento=sTransaccion.registrarRequerimiento(requerimiento, sMaestros);
+		requerimiento=sTransaccion.registrarRequerimiento(requerimiento, true, sMaestros);
 		parametros.put("requerimiento", requerimiento);
 		if(requerimiento!=null){
 			try {
